@@ -216,36 +216,7 @@ class BinomialQueue
    */
   bool Remove( const Comparable & x )
   {
-    if( isEmpty( ) )
-      throw UnderflowException{ };
-
-    if ( hash_table.Contains( x ) ) {
-      // delete x from hash table and return pointer to the node
-      BinomialNode* binomial_node_to_delete = hash_table.RemoveReturn( x );
-      // element to delete is now the smallest element in the tree
-      int minIndex = findMinIndex( );
-      binomial_node_to_delete->element = theTrees[ minIndex ]->element - 1;
-      // move element node to root
-      while ( binomial_node_to_delete->parent_node != nullptr && 
-              binomial_node_to_delete->element < binomial_node_to_delete->parent_node->element) {
-        Comparable element_to_delete = binomial_node_to_delete->element;
-        // update element
-        binomial_node_to_delete->element = binomial_node_to_delete->parent_node->element;
-        binomial_node_to_delete->parent_node->element = element_to_delete;
-        // update hash_table 
-        hash_table.ReInsertPointer( binomial_node_to_delete->element,
-                                    binomial_node_to_delete );
-        hash_table.ReInsertPointer( binomial_node_to_delete->parent_node->element,
-                                    binomial_node_to_delete->parent_node );
-        // update node
-        binomial_node_to_delete = binomial_node_to_delete->parent_node;
-        binomial_node_to_delete->parent_node = binomial_node_to_delete->parent_node;
-      }
-      // binomial_node_to_delete is now the smallest element
-      deleteMin( );
-      return true;
-    }
-    return false;
+    return true;
   }
 
   /**
